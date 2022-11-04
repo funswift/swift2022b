@@ -39,9 +39,9 @@
   <ons-page>
     <ons-tabbar position="buttom">
       <!-- タブバーの設定、文字なくてもいいかも -->
-      <ons-tab page="tab1.html" icon="fa-map" active>
+      <ons-tab page="tab1.html" icon="fa-map">
       </ons-tab>
-      <ons-tab page="tab2.html" icon="fa-search">
+      <ons-tab page="tab2.html" icon="fa-search" active>
       </ons-tab>
       <ons-tab page="tab3.html" icon="fa-heart">
       </ons-tab>
@@ -60,6 +60,10 @@
 
   <template id="tab2.html">
     <ons-page id="second-page">
+      <div class="toolbar">
+        <ons-search-input id="listpage-search" placeholder="Search"></ons-search-input>
+        <ons-toolbar-button id="listpage-hamburger"icon="fa-bars"></ons-toolbar-button>
+      </div>
       <p style="text-align: center;">
         This is the second page.
       </p>
