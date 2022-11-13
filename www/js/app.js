@@ -61,3 +61,40 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 window.initMap = initMap;
+
+
+/*--- XMLHttpsRequestオブジェクトを返す ---*/
+function createXMLHttpRequest(category){ //category → ["Eat", "Kaimono", "Look", "Onsen", "Play"]
+  const request = new XMLHttpRequest();
+  request.open('GET', 'https://raw.githubusercontent.com/funswift/swift2022b-main/main/www/' + category + '.json', true);
+  //↑JSONに（まだ）書き込まないのでGETで決め打ち
+  request.responseType = 'json';
+  request.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+  request.send(null);
+  //↑この3行は今のところ気にしなくていい
+
+  /*--- コールバック関数の書き方 ---*/
+  /*
+  request.onreadystatechange = function(){
+    if(this.readyState === XMLHttpRequest.DONE && this.status === 200){ ←通信がうまくいったらの処理
+      ここに処理を書く
+      this.responseでJSONオブジェクトを取得できる
+    }
+  }
+  */
+  return request;
+}
+
+function displayEatDataToList(){ //一覧画面にEat.jsonを表示する関すにする予定 確認にとりあえずデータを表示してみてる
+  const eatDataRequest = createXMLHttpRequest("Eat");
+  eatDataRequest.onreadystatechange = function() {
+    if(this.readyState === XMLHttpRequest.DONE && this.status === 200){
+      //console.log(this.response);
+      const eatData = this.response;
+      document.getElementById("name").lastElementChild.textContent = eatData[0].名称;
+      document.getElementById("hurigana").lastElementChild.textContent = eatData[0].ふりがな;
+      document.getElementById("category").lastElementChild.textContent = eatData[0].カテゴリ;
+      document.getElementById("area").lastElementChild.textContent = eatData[0].エリア;
+    }
+  }
+}

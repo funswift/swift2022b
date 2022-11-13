@@ -80,9 +80,31 @@
         <ons-search-input id="listpage-search" placeholder="Search"></ons-search-input>
         <ons-toolbar-button id="listpage-hamburger"icon="fa-bars"></ons-toolbar-button>
       </div>
-      <p style="text-align: center;">
-        This is the second page.
-      </p>
+      <!-- ここからとりあえず書いただけ -->
+      <div class="content">
+      <table id="kari">
+        <tr id="name">
+          <th>店名</th>
+          <td></td>
+        </tr>
+        <tr id="hurigana">
+          <th>ふりがな</th>
+          <td></td>
+        </tr>
+        <tr id="category">
+          <th>カテゴリ</th>
+          <td></td>
+        </tr>
+        <tr id="area">
+          <th>エリア</th>
+          <td></td>
+        </tr>
+      </table>
+      </div>
+      <script>
+        displayEatDataToList();
+      </script>
+      <!-- ここまで -->
     </ons-page>
   </template>
 
