@@ -85,16 +85,200 @@ function createXMLHttpRequest(category){ //category → ["Eat", "Kaimono", "Look
   return request;
 }
 
-function displayEatDataToList(){ //一覧画面にEat.jsonを表示する関すにする予定 確認にとりあえずデータを表示してみてる
+
+function displayEatDataToList(){ //一覧画面に食べるカテゴリ表示
   const eatDataRequest = createXMLHttpRequest("Eat");
   eatDataRequest.onreadystatechange = function() {
     if(this.readyState === XMLHttpRequest.DONE && this.status === 200){
       //console.log(this.response);
       const eatData = this.response;
-      document.getElementById("name").lastElementChild.textContent = eatData[0].名称;
-      document.getElementById("hurigana").lastElementChild.textContent = eatData[0].ふりがな;
-      document.getElementById("category").lastElementChild.textContent = eatData[0].カテゴリ;
-      document.getElementById("area").lastElementChild.textContent = eatData[0].エリア;
+      
+      for(let i=0; eatData.length>i; i++){
+        const eatCard = document.createElement("div");
+        eatCard.className = "list-card";
+        eatCard.style = "background-color: #ffca80cc";
+        
+        const cardTop = document.createElement("div");
+        cardTop.className = "list-card-top"
+
+        const cardIcon = document.createElement("img");
+        cardIcon.src = "./image/icon/Eat.png";
+        cardIcon.alt = "食べるアイコン";
+
+        const cardName = document.createElement("p");
+        cardName.textContent = eatData[i].名称;
+
+        cardTop.appendChild(cardIcon);
+        cardTop.appendChild(cardName);
+
+        const cardImage = document.createElement("div");
+        cardImage.className = "instead-of-image";
+
+        eatCard.appendChild(cardTop);
+        eatCard.appendChild(cardImage);
+        
+        document.getElementById("list-container").appendChild(eatCard);
+
+        /*
+        <div id="list-container">
+          <div class="list-card" style="background-color: #ffca80CC;">
+            <div class="list-card-top">
+                <img src="./image/Eat.png">
+                <p>店名</p>
+            </div>
+            <div class="instead-of-image">
+            </div>
+          </div>
+        </div>*/
+      }
+    }
+  }
+}
+
+function displayLookDataToList(){ //一覧画面に見るカテゴリ表示
+  const eatDataRequest = createXMLHttpRequest("Look");
+  eatDataRequest.onreadystatechange = function() {
+    if(this.readyState === XMLHttpRequest.DONE && this.status === 200){
+      //console.log(this.response);
+      const lookData = this.response;
+      
+      for(let i=0; lookData.length>i; i++){
+        const lookCard = document.createElement("div");
+        lookCard.className = "list-card";
+        lookCard.style = "background-color: #bfe4ffcc";
+        
+        const cardTop = document.createElement("div");
+        cardTop.className = "list-card-top"
+
+        const cardIcon = document.createElement("img");
+        cardIcon.src = "./image/icon/Look.png";
+        cardIcon.alt = "見るアイコン";
+
+        const cardName = document.createElement("p");
+        cardName.textContent = lookData[i].名称;
+
+        cardTop.appendChild(cardIcon);
+        cardTop.appendChild(cardName);
+
+        const cardImage = document.createElement("div");
+        cardImage.className = "instead-of-image";
+
+        lookCard.appendChild(cardTop);
+        lookCard.appendChild(cardImage);
+        
+        document.getElementById("list-container").appendChild(lookCard);
+      }
+    }
+  }
+}
+
+function displayPlayDataToList(){ //一覧画面に遊ぶカテゴリ表示
+  const eatDataRequest = createXMLHttpRequest("Play");
+  eatDataRequest.onreadystatechange = function() {
+    if(this.readyState === XMLHttpRequest.DONE && this.status === 200){
+      //console.log(this.response);
+      const playData = this.response;
+      
+      for(let i=0; playData.length>i; i++){
+        const playCard = document.createElement("div");
+        playCard.className = "list-card";
+        playCard.style = "background-color: #d8f255cc";
+        
+        const cardTop = document.createElement("div");
+        cardTop.className = "list-card-top"
+
+        const cardIcon = document.createElement("img");
+        cardIcon.src = "./image/icon/Play.png";
+        cardIcon.alt = "遊ぶアイコン";
+
+        const cardName = document.createElement("p");
+        cardName.textContent = playData[i].名称;
+
+        cardTop.appendChild(cardIcon);
+        cardTop.appendChild(cardName);
+
+        const cardImage = document.createElement("div");
+        cardImage.className = "instead-of-image";
+
+        playCard.appendChild(cardTop);
+        playCard.appendChild(cardImage);
+        
+        document.getElementById("list-container").appendChild(playCard);
+      }
+    }
+  }
+}
+
+function displayOnsenDataToList(){ //一覧画面に温泉カテゴリ表示
+  const eatDataRequest = createXMLHttpRequest("Play");
+  eatDataRequest.onreadystatechange = function() {
+    if(this.readyState === XMLHttpRequest.DONE && this.status === 200){
+      //console.log(this.response);
+      const onsenData = this.response;
+      
+      for(let i=0; onsenData.length>i; i++){
+        const onsenCard = document.createElement("div");
+        onsenCard.className = "list-card";
+        onsenCard.style = "background-color: #77d9a8cc";
+        
+        const cardTop = document.createElement("div");
+        cardTop.className = "list-card-top"
+
+        const cardIcon = document.createElement("img");
+        cardIcon.src = "./image/icon/Onsen.png";
+        cardIcon.alt = "温泉アイコン";
+
+        const cardName = document.createElement("p");
+        cardName.textContent = onsenData[i].名称;
+
+        cardTop.appendChild(cardIcon);
+        cardTop.appendChild(cardName);
+
+        const cardImage = document.createElement("div");
+        cardImage.className = "instead-of-image";
+
+        onsenCard.appendChild(cardTop);
+        onsenCard.appendChild(cardImage);
+        
+        document.getElementById("list-container").appendChild(onsenCard);
+      }
+    }
+  }
+}
+
+function displayKaimonoDataToList(){ //一覧画面に買い物カテゴリ表示
+  const eatDataRequest = createXMLHttpRequest("Play");
+  eatDataRequest.onreadystatechange = function() {
+    if(this.readyState === XMLHttpRequest.DONE && this.status === 200){
+      //console.log(this.response);
+      const kaimonoData = this.response;
+      
+      for(let i=0; kaimonoData.length>i; i++){
+        const kaimonoCard = document.createElement("div");
+        kaimonoCard.className = "list-card";
+        kaimonoCard.style = "background-color: #ffcabfcc";
+        
+        const cardTop = document.createElement("div");
+        cardTop.className = "list-card-top"
+
+        const cardIcon = document.createElement("img");
+        cardIcon.src = "./image/icon/Kaimono.png";
+        cardIcon.alt = "買い物アイコン";
+
+        const cardName = document.createElement("p");
+        cardName.textContent = kaimonoData[i].名称;
+
+        cardTop.appendChild(cardIcon);
+        cardTop.appendChild(cardName);
+
+        const cardImage = document.createElement("div");
+        cardImage.className = "instead-of-image";
+
+        kaimonoCard.appendChild(cardTop);
+        kaimonoCard.appendChild(cardImage);
+        
+        document.getElementById("list-container").appendChild(kaimonoCard);
+      }
     }
   }
 }
