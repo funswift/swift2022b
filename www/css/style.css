@@ -34,6 +34,15 @@ body {
   box-shadow: 0px 2px 2px #00000040;
   border-radius: 15px;
   margin: 8px auto 8px auto;
+  transition: background-color .4s;
+}
+
+.list-card:hover .open-card{
+  visibility: visible;
+}
+
+.open-card{
+  visibility: hidden;
 }
 
 .list-card-top {

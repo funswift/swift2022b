@@ -97,6 +97,7 @@ function displayEatDataToList(){ //一覧画面に食べるカテゴリ表示
         const eatCard = document.createElement("div");
         eatCard.className = "list-card";
         eatCard.style = "background-color: #ffca80cc";
+        eatCard.ontouchstart="";
         
         const cardTop = document.createElement("div");
         cardTop.className = "list-card-top"
@@ -116,8 +117,23 @@ function displayEatDataToList(){ //一覧画面に食べるカテゴリ表示
 
         eatCard.appendChild(cardTop);
         eatCard.appendChild(cardImage);
+
+        const overviweCard = document.createElement("div");
+        overviweCard.className = "open-card";
+        document.getElementById("open-card").style.display = "hidden";
+        
+        function ontouchCard(){
+          const card = document.getElementById("open-card");
+          if(card.style.visibility == "visible"){
+            p1.style.visibility = "hidden";
+          }else{
+            p1.style.visibility = "visible"
+          }
+        }
+        
         
         document.getElementById("list-container").appendChild(eatCard);
+        document.getElementById("open-card").appendChild(eatCard);
 
         /*
         <div id="list-container">
@@ -146,6 +162,7 @@ function displayLookDataToList(){ //一覧画面に見るカテゴリ表示
         const lookCard = document.createElement("div");
         lookCard.className = "list-card";
         lookCard.style = "background-color: #bfe4ffcc";
+        lookCard.ontouchstart="";
         
         const cardTop = document.createElement("div");
         cardTop.className = "list-card-top"
@@ -165,8 +182,22 @@ function displayLookDataToList(){ //一覧画面に見るカテゴリ表示
 
         lookCard.appendChild(cardTop);
         lookCard.appendChild(cardImage);
+
+        const overviwCard = document.createElement("div");
+        overviwCard.className = "open-card";
+        document.getElementById("open-card").style.display = "hidden";
+        
+        function clickCard(){
+          const card = document.getElementById("open-card");
+          if(card.style.visibility == "visible"){
+            p1.style.visibility = "hidden";
+          }else{
+            p1.style.visibility = "visible"
+          }
+        }
         
         document.getElementById("list-container").appendChild(lookCard);
+        document.getElementById("open-card").appendChild(lookCard);
       }
     }
   }
@@ -183,6 +214,7 @@ function displayPlayDataToList(){ //一覧画面に遊ぶカテゴリ表示
         const playCard = document.createElement("div");
         playCard.className = "list-card";
         playCard.style = "background-color: #d8f255cc";
+        playCard.ontouchstart="";
         
         const cardTop = document.createElement("div");
         cardTop.className = "list-card-top"
@@ -202,8 +234,22 @@ function displayPlayDataToList(){ //一覧画面に遊ぶカテゴリ表示
 
         playCard.appendChild(cardTop);
         playCard.appendChild(cardImage);
+
+        const overviwCard = document.createElement("div");
+        overviwCard.className = "open-card";
+        document.getElementById("open-card").style.display = "hidden";
+        
+        function clickCard(){
+          const card = document.getElementById("open-card");
+          if(card.style.visibility == "visible"){
+            p1.style.visibility = "hidden";
+          }else{
+            p1.style.visibility = "visible"
+          }
+        }
         
         document.getElementById("list-container").appendChild(playCard);
+        document.getElementById("open-card").appendChild(playCard);
       }
     }
   }
@@ -220,6 +266,7 @@ function displayOnsenDataToList(){ //一覧画面に温泉カテゴリ表示
         const onsenCard = document.createElement("div");
         onsenCard.className = "list-card";
         onsenCard.style = "background-color: #77d9a8cc";
+        onsenCard.ontouchstart="";
         
         const cardTop = document.createElement("div");
         cardTop.className = "list-card-top"
@@ -239,8 +286,22 @@ function displayOnsenDataToList(){ //一覧画面に温泉カテゴリ表示
 
         onsenCard.appendChild(cardTop);
         onsenCard.appendChild(cardImage);
+
+        const overviwCard = document.createElement("div");
+        overviwCard.className = "open-card";
+        document.getElementById("open-card").style.display = "hidden";
+        
+        function clickCard(){
+          const card = document.getElementById("open-card");
+          if(card.style.visibility == "visible"){
+            p1.style.visibility = "hidden";
+          }else{
+            p1.style.visibility = "visible"
+          }
+        }
         
         document.getElementById("list-container").appendChild(onsenCard);
+        document.getElementById("open-card").appendChild(onsenCard);
       }
     }
   }
@@ -257,6 +318,7 @@ function displayKaimonoDataToList(){ //一覧画面に買い物カテゴリ表�
         const kaimonoCard = document.createElement("div");
         kaimonoCard.className = "list-card";
         kaimonoCard.style = "background-color: #ffcabfcc";
+        kaimonoCard.ontouchstart="";
         
         const cardTop = document.createElement("div");
         cardTop.className = "list-card-top"
@@ -276,7 +338,13 @@ function displayKaimonoDataToList(){ //一覧画面に買い物カテゴリ表�
 
         kaimonoCard.appendChild(cardTop);
         kaimonoCard.appendChild(cardImage);
+
+        const overviweCard = document.createElement("div");
+        overviweCard.className = "open-card";
+        overviweCard.style.display = "hidden";
+        overviweCard.textContent = kaimonoData[i].名称;
         
+        kaimonoCard.appendChild(overviweCard);
         document.getElementById("list-container").appendChild(kaimonoCard);
       }
     }
