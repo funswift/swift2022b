@@ -54,12 +54,11 @@
 <body>
   <ons-page>
     <ons-tabbar position="buttom">
-      <!-- タブバーの設定、文字なくてもいいかも -->
-      <ons-tab page="tab1.html" icon="fa-map" active>
+      <ons-tab page="tab1.html" icon="fa-book" active>
       </ons-tab>
-      <ons-tab page="tab2.html" icon="fa-search">
+      <ons-tab page="tab2.html" icon="fa-map">
       </ons-tab>
-      <ons-tab page="tab3.html" icon="fa-heart">
+      <ons-tab page="tab3.html" icon="fa-search">
       </ons-tab>
       <ons-tab page="tab4.html" icon="fa-user">
       </ons-tab>
@@ -68,38 +67,36 @@
 
   <template id="tab1.html">
     <ons-page id="first-page">
-      <!--google map表示-->
-      <div id="map"></div>
-      <script >
-      initMap();
-      </script>
-      <div id="result"></div>
+      <p style="text-align: center;">first page</p>
     </ons-page>
   </template>
 
   <template id="tab2.html">
     <ons-page id="second-page">
-      <div class="toolbar">
-        <ons-toolbar-button id="listpage-hamburger"icon="fa-bars"></ons-toolbar-button>
-        <ons-search-input id="listpage-search" placeholder="Search"></ons-search-input>
-      </div>
-      <div id="list-container">
-      </div>
-      <script>
-        displayEatDataToList();
-        displayLookDataToList();
-        displayPlayDataToList();
-        displayOnsenDataToList();
-        displayKaimonoDataToList();
-      </script>
+      <!--google map表示-->
+      <div id="map"></div>
+        <script>
+          initMap();
+        </script>
+      <div id="result"></div>
     </ons-page>
   </template>
 
   <template id="tab3.html">
     <ons-page id="third-page">
-      <p style="text-align: center;">
-        This is the third page.
-      </p>
+      <div class="toolbar">
+        <ons-toolbar-button id="listpage-hamburger"icon="fa-bars"></ons-toolbar-button>
+        <ons-search-input id="listpage-search" placeholder="Search"></ons-search-input>
+      </div>
+      <div id="list-container">
+        <script>
+          displayEatDataToList();
+          displayLookDataToList();
+          displayPlayDataToList();
+          displayOnsenDataToList();
+          displayKaimonoDataToList();
+        </script>
+      </ons-page>
     </ons-page>
   </template>
 
