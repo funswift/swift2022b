@@ -1,0 +1,20 @@
+<ons-page>
+    <div style="text-align: center;">
+      <img id="hatca-icon" src="image/icon/hatca.png" alt="hatcaのアイコン画像">
+      <form id="signup-form">
+        <p>sign up</p><br/>
+        <p>ユーザー名</p>
+        <input type="text" name="userName" id="signup-username">
+        <p>パスワード</p>
+        <input type="text" name="password" id="signup-password">
+        <br/>
+        <ons-button id="signup_button" onclick="userSignup()">
+          アカウント作成
+        </ons-button>
+      </form>
+      <a href="#" onclick="document.getElementById('hatcaNavi').popPage()">
+        ログイン画面にもどる
+      </a>
+      <span class="error_msg"></span>
+    </div>
+  </ons-page>

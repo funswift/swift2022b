@@ -1,3 +1,111 @@
+/*--- ニフクラ mobile backend ---*/
+const APPKEY = "ac62d88ed36c879e7a24c5e3e2af8eab4316242bf5aef4fc80ba683ff823cb37";
+const CLIENTKEY = "ad4cd9a56a684ddb429b0835ece22233a145525b835cecb7f8f125f266c49470";
+
+const ncmb = new NCMB(APPKEY, CLIENTKEY);
+/*------------------------------*/
+
+/*--- index.html ---*/
+function checkLogin(){
+  //navigatorを作り、ログインセッションが残っているならapp.htmlへ
+  //セッションがないならlogin.htmlへ
+  const navigator = document.createElement("ons-navigator");
+  navigator.id = "hatcaNavi";
+  const user = ncmb.User.getCurrentUser();
+
+  if (user) {
+    console.log("ログイン中のユーザー: " + user.get("userName"));
+    navigator.page = "app.html";
+  } else {
+    navigator.page = "login.html";
+  }
+  document.body.appendChild(navigator);
+}
+
+/*--- login.html ---*/
+//ログインを行う
+function userLogin(){
+  //入力フォームからユーザー名とパスワードを取得
+  const userName = document.getElementById("login-username").value;
+  const password = document.getElementById("login-password").value;
+
+  console.log(userName);
+  console.log(password);
+  
+  //ログインを実行したあとのコールバックを設定
+  var callBack_Login = function(error, obj) {
+      if (error) {
+        //document.getElementsByClassName("error_msg").textContent("errorCode:" + error.code + ", errorMessage:" + error.message);
+      } else {
+        //メニュー画面に遷移
+        document.getElementById('hatcaNavi').pushPage("app.html");
+      }
+  }
+
+  //ログイン処理を実行し、上で設定されたコールバックが実行される
+  ncmb.User.login(userName, password, callBack_Login);
+}
+
+/*--- signup.html ---*/
+//会員登録を行う
+function userSignup(){
+  //入力フォームからユーザー名とパスワードを取得
+  const userName = document.getElementById("signup-username").value;
+  const password = document.getElementById("signup-password").value;
+
+  //ログインを実行したあとのコールバックを設定
+  var callBack_Login = function(error, obj) {
+      if (error) {
+        //document.getElementsByClassName("error_msg").textContent("errorCode:" + error.code + ", errorMessage:" + error.message);
+      } else {
+        //メニュー画面に遷移
+        document.getElementById('hatcaNavi').pushPage("app.html");
+      }
+  }
+  
+  //会員登録を実行したあとのコールバックを設定
+  var callBack_Account = function(error, obj) {
+      if (error) {
+        //document.getElementsByClassName("error_msg").textContent("errorCode:" + error.code + ", errorMessage:" + error.message);
+      } else {
+          //ログインを実行
+         ncmb.User.login(userName, password, callBack_Login);
+      }
+  }
+
+  //会員のインスタンスを作成
+  var user = new ncmb.User();
+  var acl = new ncmb.Acl();
+  //登録ユーザーに対するアクセス制御(読む、書き)
+  acl.setPublicReadAccess(true);
+  acl.setPublicWriteAccess(true);
+  
+  //ユーザー名とパスワードとスコアをインスタンスに設定
+  user.set("userName", userName)
+      .set("password", password)
+      .set("acl", acl);//★ACLをセットするコード
+
+  //会員登録を実行し、上で設定されたコールバックが実行される
+  user.signUpByAccount(callBack_Account);
+}
+
+
+//ログアウトを実行し、ホーム画面に遷移させる
+function logout(){
+  ncmb.User.logout()
+           .then(function(){
+              // ログアウト後処理
+              document.getElementById('hatcaNavi').resetToPage("login.html");
+           })
+           .catch(function(err){
+              // エラー処理
+              console.log("error:" + err.message);
+              //未ログインの場合はログイン画面を表示
+              document.getElementById('hatcaNavi').resetToPage("login.html");
+           });
+}
+
+/*--- tab2.html ---*/
 //現在地のアイコン
 const image =
     //"https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
@@ -63,6 +171,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 window.initMap = initMap;
 
 
+/*--- tab3.html ---*/
 /*--- XMLHttpsRequestオブジェクトを返す ---*/
 function createXMLHttpRequest(category){ //category → ["Eat", "Kaimono", "Look", "Onsen", "Play"]
   const request = new XMLHttpRequest();
@@ -84,7 +193,6 @@ function createXMLHttpRequest(category){ //category → ["Eat", "Kaimono", "Look
   */
   return request;
 }
-
 
 function displayEatDataToList(){ //一覧画面に食べるカテゴリ表示
   const eatDataRequest = createXMLHttpRequest("Eat");
@@ -280,5 +388,15 @@ function displayKaimonoDataToList(){ //一覧画面に買い物カテゴリ表�
         document.getElementById("list-container").appendChild(kaimonoCard);
       }
     }
+  }
+}
+
+/*--- tab4.html ---*/
+function testDisplayUserInfo(){
+  const user = ncmb.User.getCurrentUser();
+  if(user){
+    const testP = document.createElement("p");
+    testP.textContent = "ユーザー名：" + user.get("userName");
+    document.getElementById("user-info").appendChild(testP);
   }
 }
