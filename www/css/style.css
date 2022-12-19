@@ -2,14 +2,6 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/*--- login.html ---*/
-#hatca-icon {
-  width: 100px;
-  height: 100px;
-  margin-top: 30px;
-}
-
-/*--- tab3.html ---*/
 .toolbar {
   display: flex;
   align-items: center;
