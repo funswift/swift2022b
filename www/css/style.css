@@ -21,13 +21,9 @@ body {
   left: 1;
 }
 
-#listpage-hamburger {
-  margin: 16px 8px 0 0;
-}
-
 #listpage-search {
-  width: 90%;
-  margin: auto 8px auto 0;
+  width: 95%;
+  margin: 0 auto 0 auto;
 }
 
 #list-container {
