@@ -3,6 +3,7 @@ const APPKEY = "ac62d88ed36c879e7a24c5e3e2af8eab4316242bf5aef4fc80ba683ff823cb37
 const CLIENTKEY = "ad4cd9a56a684ddb429b0835ece22233a145525b835cecb7f8f125f266c49470";
 
 const ncmb = new NCMB(APPKEY, CLIENTKEY);
+const SpotData = ncmb.DataStore("Spot");
 /*------------------------------*/
 
 /*--- index.html ---*/
@@ -389,6 +390,41 @@ function displayKaimonoDataToList(){ //一覧画面に買い物カテゴリ表�
       }
     }
   }
+}
+
+function getSpotData() {
+  const data = SpotData.limit(10).fetchAll()
+    .then(function(results){
+      for(let i=0; i<results.length; i++){
+        console.log(results[i].name);
+      }
+    })
+    .catch(function(err){
+      console.log(err);
+    });
+}
+
+function displaySpotVisted() {
+  const data = SpotData.limit(10).fetchAll()
+                        .then(function(results){
+                          for(let i=0; i<results.length; i++){
+                            console.log(results[i].name);
+                          }
+                        })
+                        .catch(function(err){
+                          console.log(err);
+                        });
+
+  /*
+  SpotVistedData.equalTo("userName", user.get("userName")).fetchAll()
+                .then(function(results){
+                  console.log(results);
+                  dataList.push(results);
+                })
+                .catch(function(err){
+                  console.log(err)
+                  errorMassage = err;
+                });*/
 }
 
 /*--- tab4.html ---*/

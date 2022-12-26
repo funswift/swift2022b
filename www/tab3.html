@@ -4,6 +4,27 @@
     <ons-search-input id="listpage-search" placeholder="Search"></ons-search-input>
   </div>
   <div id="list-container">
+    <div class="frame">
+      <div class="header">
+        <p>まだ行ってない場所</p>
+        <a href="#" onclick="document.getElementById('hatcaNavi').pushPage('まだ行ってない.html')">
+          もっと見る ＞
+        </a>
+      </div>
+      <div id="never-been-spot-list">
+        <div class="list-card-test"></div>
+        <div class="list-card-test"></div>
+      </div>
+    </div>
+    <div class="frame">
+      <div class="header">
+        <p>もう１回行く</p>
+        <a href="#" onclick="document.getElementById('hatcaNavi').pushPage('もう１回行く.html')">
+          もっと見る ＞
+        </a>
+      </div>
+      <div id="go-again-list"></div>
+    </div>
     <script>
       displayEatDataToList();
       displayLookDataToList();
